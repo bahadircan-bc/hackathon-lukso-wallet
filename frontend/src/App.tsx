@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import NFTCard from "./NFTCard";
 import SearchIcon from "./assets/search.svg";
 
+import { Link } from "react-router-dom";
+
 const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
 
 const App = () => {
@@ -21,6 +23,7 @@ const App = () => {
   };
   return (
     <div className="app">
+      <Link to='/signup' className="absolute top-0 right-0 w-[200px] aspect-[4] bg-red-500">hello</Link>
       <h1>NFT Marketplace</h1>
 
       <div className="search">

@@ -584,6 +584,14 @@ video {
   position: relative;
 }
 
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
 .block {
   display: block;
 }
@@ -604,6 +612,10 @@ video {
   display: none;
 }
 
+.aspect-\[4\] {
+  aspect-ratio: 4;
+}
+
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
@@ -614,6 +626,10 @@ video {
 
 .w-1 {
   width: 0.25rem;
+}
+
+.w-\[200px\] {
+  width: 200px;
 }
 
 .w-full {
