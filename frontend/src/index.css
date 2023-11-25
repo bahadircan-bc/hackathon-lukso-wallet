@@ -18,8 +18,31 @@
 
 body {
   font-family: var(--font-roboto);
-  background-color: #cccccc;
+  background-color: #fff1f8;
 }
+.avatar-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.logo-and-texts {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+height: 150px;
+width: 150px;
+}
+.avatar-texts {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+.avatar-text {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+
 
 .app {
   padding: 4rem;

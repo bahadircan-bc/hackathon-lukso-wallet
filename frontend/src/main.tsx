@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import SignUp from "./pages/SignUp.tsx";
+import Profile from "./pages/Profile.tsx"
 import "./App.css";
 import {
   Route,
@@ -14,6 +15,8 @@ const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<App />} />,
     <Route path="/signup" element={<SignUp />} />,
+    <Route path="/profile" element={<Profile />} />,
+
   ])
 );
 

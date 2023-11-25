@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import NFTCard from "./NFTCard";
 import SearchIcon from "./assets/search.svg";
+import Logo from "./assets/logo1.png";
 
 import { Link } from "react-router-dom";
 
@@ -23,11 +24,22 @@ const App = () => {
   };
   return (
     <div className="app">
-      <Link to='/signup' className="absolute top-0 right-0 w-[200px] aspect-[4] bg-red-500">hello</Link>
+      <div className="avatar-container">
+        <div className="logo-and-texts">
+          <img className="avatar" src={Logo} alt="App Logo" />
+          <div className="avatar-texts">
+            <span className="avatar-text">Home</span>
+            <span className="avatar-text">Community</span>
+            <span className="avatar-text">Contact</span>
+            <span className="avatar-text">Profile</span>
+          </div>
+        </div>
+      </div>
+      
       <h1>NFT Marketplace</h1>
 
       <div className="search">
-        <input
+        <input  
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for NFT's"
