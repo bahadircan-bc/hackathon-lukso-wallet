@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A boilerplate repository to get you started with Hardhat and Ethereum development",
   "scripts": {
+    "build": "hardhat compile --force --show-stack-traces",
     "test": "hardhat test"
   },
   "repository": {
@@ -24,9 +25,13 @@
     "@nomiclabs/hardhat-ethers": "^2.2.1",
     "@nomiclabs/hardhat-etherscan": "^3.1.4",
     "chai": "^4.3.7",
+    "dotenv": "^16.3.1",
     "ethers": "^5.7.2",
     "hardhat": "^2.12.5",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2"
+  },
+  "dependencies": {
+    "@lukso/lsp-smart-contracts": "^0.12.1"
   }
 }
