@@ -1,6 +1,3 @@
-import React from 'react';
-import '../ProfilePage.css'; // Added the style file
-
 const ProfilePage = () => {
   // User information
   const userInfo = {
@@ -11,12 +8,12 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
-      <div className="content-center">
-        <div className="avatar-container">
-          <img className="avatar" src={userInfo.profilePicture} alt="Profile Picture" />
+    <div className="h-screen flex items-center justify-center">
+      <div className="flex items-center">
+        <div className="mr-5">
+          <img className="w-[100px] aspect-square rounded-[50%]" src={userInfo.profilePicture} alt="Profile Picture" />
         </div>
-        <div className="profile-info">
+        <div className="text-left">
           <h1>{userInfo.name}</h1>
           <p>{userInfo.age} years old</p>
           <p>{userInfo.occupation}</p>
