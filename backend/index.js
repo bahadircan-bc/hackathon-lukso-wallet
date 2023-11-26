@@ -26,6 +26,13 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.get('/redirect', (req, res) => {
+  console.log(req.query.username)
+  res.send(`<script>window.opener.postMessage('${
+    req.query.username
+  }', 'http://localhost:5173/signup_bahadir'); setTimeout(()=>{window.close()}, 5000);</script > `)
+});
+
 const redirect_uri =
   "https://4f73-212-2-212-152.ngrok-free.app/instagram/redirect/";
 const client_id = "733675091956540";
@@ -59,16 +66,22 @@ app.get("/instagram/redirect", async (req, res) => {
       // console.log(response);
       // console.log(response.data.access_token);
       access_token = response.data.access_token;
-      console.log('access_token: ', access_token)
+      console.log("access_token: ", access_token);
       // console.log(response.data.user_id);
       user_id = response.data.user_id;
-      console.log('user_id: ', user_id)
+      console.log("user_id: ", user_id);
 
       axios
-        .get(`https://graph.instagram.com/${user_id}?fields=username&access_token=${access_token}`)
+        .get(
+          `https://graph.instagram.com/${user_id}?fields=username&access_token=${access_token}`
+        )
         .then((response) => {
           // console.log(response);
-          console.log('username: ', response.data.username);
+          console.log("username: ", response.data.username);
+          res.redirect('/redirect?username=' + response.data.username)
+          // res.send(
+          //   "You have been verified. This page is going to close in 5 seconds. <script>window.postMessage(`hello`, `http://localhost:5173/signup_bahadir`); setTimeout(()=>{window.close()}, 5000);</script > "
+          // );
         })
         .catch((error) => {
           console.log(JSON.stringify(error));

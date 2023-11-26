@@ -1,16 +1,52 @@
+import { useState } from "react";
+import { LSPFactory } from "@lukso/lsp-factory.js";
+
+console.log(window)
+const RPC_URL = 'https://rpc.testnet.lukso.network';
+const lspFactory = new LSPFactory(RPC_URL);
+
+const backendUrl = "https://4f73-212-2-212-152.ngrok-free.app"
+const authEndpoint = '/api/auth';
 export default function SignUpBahadir() {
+  const [instaHandle, setInstaHandle] = useState("");
+  const createUP = async() => {
+    // await lspFactory.UniversalProfile.deploy({
+    //   controllerAddresses: [
+    //     '0x7Ab53a0C861fb955050A8DA109eEeA5E61fd8Aa4',
+    //   ],
+    // });
+  }
   const handleClick = () => {
+    window.addEventListener(
+      "message",
+      (event) => {
+        if (event.origin !== backendUrl) return;
+        console.log(event.origin)
+        console.log('message data: ', event.data)
+        setInstaHandle(event.data)
+      },
+      false,
+    );
     console.log("auth");
-    window.open(
-      `https://4f73-212-2-212-152.ngrok-free.app/api/auth`,
+    const newWindow = window.open(
+      backendUrl+authEndpoint,
       "_blank",
       "height=600,width=400"
     );
+    console.log(newWindow)
+    if (newWindow) {
+      newWindow.onclose = () => {
+        newWindow.window.postMessage("hello", "*")
+      }
+    }
   };
   return (
-    <div className="flex bg-red-500 w-1/2 aspect-square items-center justify-center">
+    <div className="flex flex-col bg-red-500 w-1/2 aspect-square items-center justify-evenly">
       <div className="cursor-pointer" onClick={handleClick}>
-        hello
+        {instaHandle ? 'Logged in as ' + instaHandle : 'Login with Instagram'}
+      </div>
+      <div onClick={createUP}>
+        Create your Universal Profile
       </div>
     </div>
   );
