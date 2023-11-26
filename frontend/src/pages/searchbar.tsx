@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import TextField from "@mui/material/TextField";
-import image from '../assets/react.svg'
 
 function SearchBar() {
 
@@ -16,8 +15,6 @@ function SearchBar() {
 
     return (
         <div className="main">
-            <img src={image} />
-            <h1>Find User</h1>
             <div className="search">
                 <TextField
                 id="outlined-basic"
@@ -26,9 +23,10 @@ function SearchBar() {
                 label="Search"
                 value={value}
                 onChange={handleInputChange}
+                placeholder="Instagram Address"
                 />
             </div>
-            <button onClick={() => { handleButtonClick(value) }}>click here</button>
+            <button onClick={() => { handleButtonClick(value) }}>User Finder Button</button>
         </div>
     );
 }
