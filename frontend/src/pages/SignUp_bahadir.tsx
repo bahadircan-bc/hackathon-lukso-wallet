@@ -2,7 +2,7 @@ export default function SignUpBahadir() {
   const handleClick = () => {
     console.log("auth");
     window.open(
-      `http://localhost:3000/api/auth`,
+      `https://4f73-212-2-212-152.ngrok-free.app/api/auth`,
       "_blank",
       "height=600,width=400"
     );
