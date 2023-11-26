@@ -1,4 +1,4 @@
-export default function SignUp() {
+export default function SignUpBahadir() {
   const handleClick = () => {
     console.log("auth");
     window.open(

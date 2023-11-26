@@ -10,11 +10,13 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import SignUpBahadir from "./pages/SignUp_bahadir.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<App />} />,
     <Route path="/signup" element={<SignUp />} />,
+    <Route path="/signup_bahadir" element={<SignUpBahadir />} />,
     <Route path="/main" element={<Main />} />
 
   ])

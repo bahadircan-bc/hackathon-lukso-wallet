@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@erc725/erc725.js": "^0.21.2",
     "@lukso/lsp-factory.js": "^3.2.1",
+    "@mui/material": "^5.14.18",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",

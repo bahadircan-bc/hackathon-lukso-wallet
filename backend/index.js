@@ -64,18 +64,14 @@ app.get("/instagram/redirect", async (req, res) => {
       user_id = response.data.user_id;
       console.log('user_id: ', user_id)
 
-      const getData = new URLSearchParams();
-      getData.append("fields", "username");
-      getData.append("access_token", access_token);
       axios
-        .get(`https://graph.instagram.com/${user_id}?fields=id,username&access_token=${access_token}`)
+        .get(`https://graph.instagram.com/${user_id}?fields=username&access_token=${access_token}`)
         .then((response) => {
-          console.log(response);
-          console.log(response.data.id);
-          console.log(response.data.username);
+          // console.log(response);
+          console.log('username: ', response.data.username);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(JSON.stringify(error));
         });
     })
     .catch((error) => {
