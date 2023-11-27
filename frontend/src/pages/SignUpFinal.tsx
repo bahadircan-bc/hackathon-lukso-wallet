@@ -5,7 +5,8 @@ import { AbiItem } from "web3-utils";
 import axios from "axios";
 
 const web3 = new Web3(window.lukso);
-const backendUrl = "https://dcb3-159-146-18-161.ngrok-free.app";
+const backendUrl = import.meta.env.VITE_BACKEND_NGROK_URL;
+console.log(backendUrl);
 const authEndpoint = "/api/auth";
 
 const sendHandleToBackend = async (handle: string, address: string) => {

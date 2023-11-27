@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import SignUp from "./pages/signup.tsx";
+import SignUp from "./pages/SignUp.tsx";
 import Main from "./pages/main.tsx"
 import SetData_candas from "./pages/SetData_candas.tsx";
 import "./App.css";

@@ -1,12 +1,14 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 
-function SearchBar() {
+function SearchBar(props: any) {
 
     const [value, setValue] = useState("");
-
-    const handleInputChange = (event: React.ChangeEvent) => {
+    const {onChange} = props;
+ 
+    const handleInputChange = (event: any) => {
         setValue(event.target.value)
+        onChange && onChange(event.target.value);
     }
 
     const handleButtonClick = (e: string) => {
