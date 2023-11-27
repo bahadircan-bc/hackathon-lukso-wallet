@@ -6,7 +6,7 @@ const searchEndPoint = "/api/instagram";
 
 function Payment(props: any) {
   const [value, setValue] = useState("");
-  const { paymentHandle } = props;
+  const { paymentHandle, payerAddress, sendTransaction } = props;
 
   const findAddressFromHandle = async (handle: string) => {
     const getData = new URLSearchParams();
@@ -15,18 +15,19 @@ function Payment(props: any) {
       .get(backendUrl + searchEndPoint, { params: getData })
       .then((res) => {
         console.log(res.data);
-        paymentHandle(res.data);
+        return res.data.address;
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const clickHandler1 = (value: string) => {
+  const clickHandler = async () => {
     console.log(value);
-    if (paymentHandle) {
-      findAddressFromHandle(value);
-    }
+    if (!paymentHandle) return;
+    if (!payerAddress) return;
+    const address = await findAddressFromHandle(paymentHandle);
+    sendTransaction(address, value)
   };
 
   return (
@@ -39,13 +40,14 @@ function Payment(props: any) {
           }}
           placeholder="Payment Amount"
         />
-        <button
+        <div
+          className="cursor-pointer"
           onClick={() => {
-            clickHandler1(value);
+            clickHandler();
           }}
         >
-          Click me pls
-        </button>
+          SEND
+        </div>
       </div>
     </>
   );

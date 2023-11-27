@@ -16,9 +16,9 @@ import SignUpFinal from "./pages/SignUpFinal.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<App />} />,
-    <Route path="/signup" element={<SignUp />} />,
-    <Route path="/signup_bahadir" element={<SignUpFinal />} />,
-    <Route path="/setdata" element={<SetData_candas />} />,
+    // <Route path="/signup" element={<SignUp />} />,
+    <Route path="/signup" element={<SignUpFinal />} />,
+    // <Route path="/setdata" element={<SetData_candas />} />,
     <Route path="/main" element={<Main />} />
 
   ])
