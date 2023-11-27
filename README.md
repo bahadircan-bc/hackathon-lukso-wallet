@@ -20,6 +20,8 @@ cd hardhat-boilerplate
 npm install
 ```
 
+goksu
+
 Once installed, let's run Hardhat's testing network:
 
 ```sh
