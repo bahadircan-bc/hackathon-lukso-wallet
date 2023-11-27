@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import axios from "axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_NGROK_URL;
@@ -6,15 +6,18 @@ const searchEndPoint = "/api/instagram";
 
 function Payment(props: any) {
   const [value, setValue] = useState("");
-  const { paymentHandle, payerAddress, sendTransaction } = props;
+  const { paymentHandle, sendTransaction, payerAddress } = props;
 
   const findAddressFromHandle = async (handle: string) => {
     const getData = new URLSearchParams();
     getData.append("handle1", handle);
     axios
-      .get(backendUrl + searchEndPoint, { params: getData, headers: {
-        "ngrok-skip-browser-warning": "69420"
-      } })
+      .get(backendUrl + searchEndPoint, {
+        params: getData,
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
       .then((res) => {
         console.log(res.data);
         return res.data.address;
@@ -25,10 +28,12 @@ function Payment(props: any) {
   };
 
   const clickHandler = async () => {
+    sendTransaction('0xB2ccddd06e30b249138b6819dc398C272C1014E2', value);
     console.log(value);
+    console.log(paymentHandle);
+    console.log(payerAddress);
     if (!paymentHandle) return;
     if (!payerAddress) return;
-    sendTransaction(await findAddressFromHandle(paymentHandle), value);
   };
 
   return (
@@ -49,7 +54,13 @@ function Payment(props: any) {
         >
           SEND
         </div>
-        <div onClick={()=>{findAddressFromHandle('tester1')}}>test</div>
+        <div
+          onClick={() => {
+            findAddressFromHandle("tester1");
+          }}
+        >
+          test
+        </div>
       </div>
     </>
   );

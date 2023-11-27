@@ -148,7 +148,7 @@ export default function SignUpFinal() {
 
   if (!extensionIsInstalled()) {
     return (
-      <div>
+      <div className="w-[50vh] aspect-square flex items-center justify-center">
         <div>Please install Lukso Wallet extension</div>
       </div>
     );
@@ -156,7 +156,7 @@ export default function SignUpFinal() {
 
   if (!address) {
     return (
-      <div>
+      <div className="w-[50vh] aspect-square flex items-center justify-center">
         <div
           onClick={() => {
             isConnecting = false;
@@ -191,15 +191,17 @@ export default function SignUpFinal() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center w-full h-full">
       <div>Hello {address}</div>
-      <div>Instagram Handle: {retrievedHandle}</div>
+      <div onClick={authorizeInstagram}>
+        Instagram Handle: {instagramHandle}
+      </div>
       <div
         onClick={() => {
-          if (retrievedHandle) updateInstagramHandle(retrievedHandle, address);
+          if (instagramHandle) updateInstagramHandle(instagramHandle, address);
         }}
       >
-        Remove Instagram Handle
+        Update Instagram Handle
       </div>
       <div
         onClick={async () => {

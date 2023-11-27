@@ -52,31 +52,37 @@ function Main() {
   };
 
   return (
-    <>
-      <div className="">
-        <div>
-          <img src={image} />
-          <h1>Find User With Instagram Account</h1>
-          <p>You are connected as {address}</p>
-        </div>
-
-        <div>
-          <SearchBar onChange={setSearchValue} />
-        </div>
-
-        <div>
-          <h1>Enter the Payment Amount</h1>
-        </div>
-
-        <div>
-          <Payment
-            paymentHandle={searchValue}
-            payerAddress={address}
-            sendTransaction={sendTransaction}
-          />
-        </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <h1>Find User With Instagram Account</h1>
       </div>
-    </>
+
+      <div style={{ textAlign: "center", margin: "20px 0" }}>
+        <SearchBar onChange={setSearchValue} />
+      </div>
+
+      <div
+        style={{ marginTop: "20px", marginBottom: "20px", textAlign: "center" }}
+      >
+        <h1>Enter the Payment Amount</h1>
+      </div>
+
+      <div style={{ textAlign: "center" }}>
+        <Payment
+          paymentHandle={searchValue}
+          payerAddress={address}
+          sendTransaction={sendTransaction}
+        />
+      </div>
+    </div>
   );
 }
 

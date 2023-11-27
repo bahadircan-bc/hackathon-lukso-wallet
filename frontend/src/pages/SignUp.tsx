@@ -1,5 +1,6 @@
 //import axios from "axios"
 import { useState } from "react"
+import instaIcon from '../assets/insta_ic.png';
 
 function SignUp() {
 
@@ -19,9 +20,15 @@ function SignUp() {
     return (
         <>
           <div className="">
-            <div className="">
-                <h3 className="">Sign-Up / Log-In</h3>
-                <button className="" onClick={() =>{handleInsta()}}>Instagram</button>
+            <div className="" style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+                <h3 className="text-4xl text-lukso-fuchsia mt-32 mb-32 ">Sign-Up / Log-In</h3>
+                <button className="text-4xl" onClick={() => { handleInsta() }}>
+                    <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row"}}> 
+                        <img className="w-24 -ml10" src={instaIcon}/>
+                        <h1 className="w-64 text-3xl text-black">Instagram</h1>
+                    </div>
+                   
+                    </button>
           </div>
           </div>
         </>
