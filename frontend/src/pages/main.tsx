@@ -10,17 +10,16 @@ function Main() {
 
     return (
         <>
-            <div className="">
-                <div>
-                    <img src={image}/>
+            <div className="" style={{display: "flex", alignItems: "center", justifyContent: "center",flexDirection:"column"}}>
+                <div className="mt-20">
                     <h1>Find User With Instagram Account</h1>
                 </div>
 
-                <div>
+                <div className="">
                     <SearchBar/>
                 </div>
 
-                <div>
+                <div className="mt-16 mb-16">
                     <h1>Enter the Payment Amount</h1>
                 </div>
 

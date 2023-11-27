@@ -14,7 +14,7 @@ function SearchBar() {
     }
 
     return (
-        <div className="main">
+        <div className="main" >
             <div className="search">
                 <TextField
                 id="outlined-basic"
