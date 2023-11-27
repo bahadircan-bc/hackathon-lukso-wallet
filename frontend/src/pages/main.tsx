@@ -43,13 +43,14 @@ function Main() {
     connect();
   });
 
-  const sendTransaction = async (receiverAddress: string, value: string) => {
-    await web3.eth.sendTransaction({
-      from: address, // The Universal Profile address
-      to: receiverAddress, // receiving address, can be a UP or EOA
-      value: web3.utils.toWei(value, "ether"), // 0.5 amount in ETH, in wei unit
-    });
-  };
+  const sendTransaction = 
+    async (receiverAddress: string, value: string) => {
+      await web3.eth.sendTransaction({
+        from: address, // The Universal Profile address
+        to: receiverAddress, // receiving address, can be a UP or EOA
+        value: web3.utils.toWei(value, "ether"), // 0.5 amount in ETH, in wei unit
+      });
+    }
 
   return (
     <div

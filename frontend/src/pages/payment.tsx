@@ -54,13 +54,13 @@ function Payment(props: any) {
         >
           SEND
         </div>
-        <div
+        {/* <div
           onClick={() => {
             findAddressFromHandle("tester1");
           }}
         >
           test
-        </div>
+        </div> */}
       </div>
     </>
   );
