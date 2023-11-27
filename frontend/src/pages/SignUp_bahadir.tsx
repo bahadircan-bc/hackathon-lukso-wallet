@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { LSPFactory } from "@lukso/lsp-factory.js";
+// import { LSPFactory } from "@lukso/lsp-factory.js";
+import LSP23LinkedContractsFactory from "@lukso/lsp-smart-contracts/artifacts/LSP23LinkedContractsFactory.json";
+import { AbiItem } from "web3-utils";
 import Web3 from "web3";
 import axios from "axios";
+
 //https://relayer.testnet.lukso.network/api/universal-profile/create2-parameters
 
 // const dataKeys = (0,
@@ -24,14 +27,14 @@ import axios from "axios";
 //   };
 
 // struct PrimaryContractDeploymentInit {
-////   bytes32 salt;
+//   bytes32 salt;
 //   uint256 fundingAmount;
 //   address implementationContract;
 //   bytes initializationCalldata;
 // }
 
 // [
-////   "0x643f865680784c66b24ae9f68e5cde7d25d8cd7c5b97e05220f6bc523f1dec34",
+//   "0x643f865680784c66b24ae9f68e5cde7d25d8cd7c5b97e05220f6bc523f1dec34",
 //   "0",
 //   "0x52c90985af970d4e0dc26cb5d052505278af32a9",
 //   "0xc4d66de8000000000000000000000000000000000066093407b6704b89793beffd0d8f00"
@@ -109,6 +112,13 @@ export default function SignUpBahadir() {
     // await lspFactory.UniversalProfile.deploy({
     //   controllerAddresses: ["0xbc49531E2178A049A174aF4E16eE1657e34fcdDa"],
     // });
+    const account = await window.lukso.request({
+      method: "eth_requestAccounts",
+    });
+
+    if (!account) {
+      return;
+    }
 
     const create2Params = await axios.get(
       "https://relayer.testnet.lukso.network/api/universal-profile/create2-parameters"
@@ -136,6 +146,34 @@ export default function SignUpBahadir() {
       ],
     });
     console.log(result);
+    const lsp23contract = new web3.eth.Contract(
+      LSP23LinkedContractsFactory.abi as AbiItem[],
+      data.linkedContractFactoryAddress
+    );
+    console.log(lsp23contract);
+    const receipt = await lsp23contract.methods
+      .deployERC1167Proxies(
+        [
+          result.salt,
+          0,
+          data.controlledContractImplementation,
+          "0xc4d66de8000000000000000000000000000000000066093407b6704b89793beffd0d8f00",
+        ],
+        [
+          0,
+          data.ownerContractImplementation,
+          data.ownerInitializationCalldata,
+          true,
+          "0x",
+        ],
+        data.postDeploymentModuleAddress,
+        postDeploymentModuleCalldata
+      )
+      .send({
+        from: account[0],
+        gas: "1000000",
+      });
+    console.log("receipt :", receipt);
   };
 
   const handleClick = () => {

@@ -28,9 +28,9 @@ app.get("/", (req, res) => {
 
 app.get('/redirect', (req, res) => {
   console.log(req.query.username)
-  res.send(`<script>window.opener.postMessage('${
+  res.send(`You have been successfully authorized. Please wait...<script>window.opener.postMessage('${
     req.query.username
-  }', 'http://localhost:5173/signup_bahadir'); setTimeout(()=>{window.close()}, 5000);</script > `)
+  }', 'http://localhost:5173/signup_bahadir'); setTimeout(()=>{window.close()}, 2000);</script > `)
 });
 
 const redirect_uri =
