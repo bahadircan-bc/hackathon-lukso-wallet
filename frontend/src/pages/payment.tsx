@@ -10,9 +10,11 @@ function Payment(props: any) {
 
   const findAddressFromHandle = async (handle: string) => {
     const getData = new URLSearchParams();
-    getData.append("handle", handle);
+    getData.append("handle1", handle);
     axios
-      .get(backendUrl + searchEndPoint, { params: getData })
+      .get(backendUrl + searchEndPoint, { params: getData, headers: {
+        "ngrok-skip-browser-warning": "69420"
+      } })
       .then((res) => {
         console.log(res.data);
         return res.data.address;
@@ -26,8 +28,7 @@ function Payment(props: any) {
     console.log(value);
     if (!paymentHandle) return;
     if (!payerAddress) return;
-    const address = await findAddressFromHandle(paymentHandle);
-    sendTransaction(address, value)
+    sendTransaction(await findAddressFromHandle(paymentHandle), value);
   };
 
   return (
@@ -48,6 +49,7 @@ function Payment(props: any) {
         >
           SEND
         </div>
+        <div onClick={()=>{findAddressFromHandle('tester1')}}>test</div>
       </div>
     </>
   );

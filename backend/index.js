@@ -1,9 +1,8 @@
 const { MongoClient } = require("mongodb");
-
-const uri = "";
+const uri =
+  "mongodb+srv://sberkeb:Donttouchit3@cluster0.wydgkig.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri);
-
 
 const database = client.db("Hackathon");
 const users = database.collection("users");
@@ -63,28 +62,27 @@ app.post("/api/instagram", async (req, res) => {
   console.log(req.body.address);
   const doc = {
     handle: req.body.handle,
-    address: req.body.address
-  }
- 
+    address: req.body.address,
+  };
+
   result = await users.insertOne(doc);
 
-  if(result) {
+  if (result) {
     res.send(result);
+  } else {
+    res.send({ message: "Error" });
   }
-  res.send({"message": "Error"});
 });
 
 app.get("/api/instagram", async (req, res) => {
-  const query = { handle: req.body.handle1 };
+  const query = { handle: req.query.handle1 };
 
   const result = await users.findOne(query);
 
-  if(result){
+  if (result) {
     res.send(result);
-  }
-  res.send({"message": "Error"});
-
-})
+  } else res.send({ message: "Error" });
+});
 
 // app.post('api/instagram', (req, res) => {
 //   console.log(req.body)

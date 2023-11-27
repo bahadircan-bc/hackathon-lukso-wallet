@@ -11,8 +11,8 @@ const authEndpoint = "/api/auth";
 
 const sendHandleToBackend = async (handle: string, address: string) => {
   const postData = {
-    address,
     handle,
+    address,
     // Add other properties to the request body as needed
   };
   axios
@@ -204,8 +204,8 @@ export default function SignUpFinal() {
       <div
         onClick={async () => {
           const postData = {
-            address: "example_address",
-            handle: "test",
+            address: address,
+            handle: retrievedHandle,
             // Add other properties to the request body as needed
           };
           axios
