@@ -32,6 +32,8 @@
     "solidity-coverage": "^0.8.2"
   },
   "dependencies": {
-    "@lukso/lsp-smart-contracts": "^0.12.1"
+    "@lukso/lsp-smart-contracts": "^0.12.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.1"
   }
 }
