@@ -1,3 +1,12 @@
+const { MongoClient } = require("mongodb");
+
+const uri = "";
+
+const client = new MongoClient(uri);
+
+
+const database = client.db("Hackathon");
+const users = database.collection("users");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -49,10 +58,33 @@ app.get("/api/auth", (req, res) => {
   );
 });
 
-app.post("/api/instagram", (req, res) => {
-  console.log(req.body);
-  res.send("Hello World!");
+app.post("/api/instagram", async (req, res) => {
+  console.log(req.body.handle);
+  console.log(req.body.address);
+  const doc = {
+    handle: req.body.handle,
+    address: req.body.address
+  }
+ 
+  result = await users.insertOne(doc);
+
+  if(result) {
+    res.send(result);
+  }
+  res.send({"message": "Error"});
 });
+
+app.get("/api/instagram", async (req, res) => {
+  const query = { handle: req.body.handle1 };
+
+  const result = await users.findOne(query);
+
+  if(result){
+    res.send(result);
+  }
+  res.send({"message": "Error"});
+
+})
 
 // app.post('api/instagram', (req, res) => {
 //   console.log(req.body)
