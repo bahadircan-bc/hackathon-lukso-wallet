@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const axios = require("axios");
 const app = express();
 const port = 3000;
@@ -22,19 +23,21 @@ app.use(
   })
 );
 
+app.use(bodyParser.json());
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get('/redirect', (req, res) => {
-  console.log(req.query.username)
-  res.send(`You have been successfully authorized. Please wait...<script>window.opener.postMessage('${
-    req.query.username
-  }', 'http://localhost:5173/signup_bahadir'); setTimeout(()=>{window.close()}, 2000);</script > `)
+app.get("/redirect", (req, res) => {
+  console.log(req.query.username);
+  res.send(
+    `You have been successfully authorized. Please wait...<script>window.opener.postMessage('${req.query.username}', 'http://localhost:5173/signup_bahadir'); setTimeout(()=>{window.close()}, 2000);</script > `
+  );
 });
 
 const redirect_uri =
-  "https://4f73-212-2-212-152.ngrok-free.app/instagram/redirect/";
+  "https://dcb3-159-146-18-161.ngrok-free.app/instagram/redirect/";
 const client_id = "733675091956540";
 const client_secret = "657242dc75c6b23bcd5d18e48839e13a";
 const scope = "user_profile";
@@ -45,6 +48,17 @@ app.get("/api/auth", (req, res) => {
     `https://api.instagram.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=${response_type}`
   );
 });
+
+app.post("/api/instagram", (req, res) => {
+  console.log(req.body);
+  res.send("Hello World!");
+});
+
+// app.post('api/instagram', (req, res) => {
+//   console.log(req.body)
+//   res.json({message: 'Hello World!'})
+//   res.send('Hello World!')
+// })
 
 app.get("/instagram/redirect", async (req, res) => {
   let access_token = "";
@@ -78,7 +92,7 @@ app.get("/instagram/redirect", async (req, res) => {
         .then((response) => {
           // console.log(response);
           console.log("username: ", response.data.username);
-          res.redirect('/redirect?username=' + response.data.username)
+          res.redirect("/redirect?username=" + response.data.username);
           // res.send(
           //   "You have been verified. This page is going to close in 5 seconds. <script>window.postMessage(`hello`, `http://localhost:5173/signup_bahadir`); setTimeout(()=>{window.close()}, 5000);</script > "
           // );

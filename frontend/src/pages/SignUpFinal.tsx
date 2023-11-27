@@ -2,10 +2,35 @@ import { useCallback, useEffect, useState } from "react";
 import UniversalProfile from "@lukso/lsp-smart-contracts/artifacts/UniversalProfile.json";
 import Web3 from "web3";
 import { AbiItem } from "web3-utils";
+import axios from "axios";
 
 const web3 = new Web3(window.lukso);
-const backendUrl = "https://4f73-212-2-212-152.ngrok-free.app";
+const backendUrl = "https://dcb3-159-146-18-161.ngrok-free.app";
 const authEndpoint = "/api/auth";
+
+const sendHandleToBackend = async (handle: string, address: string) => {
+  const postData = {
+    address,
+    handle,
+    // Add other properties to the request body as needed
+  };
+  axios
+    .post(backendUrl + "/api/instagram", postData, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+        // Add other headers if needed
+        "Content-Type": "application/json", // Set the content type if sending JSON
+      },
+    })
+    .then((res) => {
+      // Handle the response
+      console.log(res.data);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
+    });
+};
 
 const updateInstagramHandle = async (handle: string, address: string) => {
   try {
@@ -21,6 +46,7 @@ const updateInstagramHandle = async (handle: string, address: string) => {
       gas: "1000000",
     });
     console.log("Transaction successful:", receipt);
+    sendHandleToBackend(handle, address);
   } catch (error) {
     console.error("Error updating Instagram handle:", error);
   }
@@ -168,13 +194,39 @@ export default function SignUpFinal() {
       <div>Hello {address}</div>
       <div>Instagram Handle: {retrievedHandle}</div>
       <div
-          onClick={() => {
-            if (instagramHandle)
-              updateInstagramHandle(instagramHandle, address);
-          }}
-        >
-          Remove Instagram Handle
-        </div>
+        onClick={() => {
+          if (retrievedHandle) updateInstagramHandle(retrievedHandle, address);
+        }}
+      >
+        Remove Instagram Handle
+      </div>
+      <div
+        onClick={async () => {
+          const postData = {
+            address: "example_address",
+            handle: "test",
+            // Add other properties to the request body as needed
+          };
+          axios
+            .post(backendUrl + "/api/instagram", postData, {
+              headers: {
+                "ngrok-skip-browser-warning": "69420",
+                // Add other headers if needed
+                "Content-Type": "application/json", // Set the content type if sending JSON
+              },
+            })
+            .then((res) => {
+              // Handle the response
+              console.log(res.data);
+            })
+            .catch((error) => {
+              // Handle errors
+              console.error(error);
+            });
+        }}
+      >
+        test
+      </div>
     </div>
   );
 }
