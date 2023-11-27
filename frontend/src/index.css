@@ -12,7 +12,12 @@
   --font-roboto: "Roboto Slab", serif;
   --font-raleway: "Raleway", sans-serif;
 }
-
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 body {
   font-family: var(--font-roboto);
   background-color: #fff1f8;
@@ -23,6 +28,15 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+@font-face {
+  font-family: 'Fontspring';
+  src: local('Fontspring'), url(./fonts/Fontspring-DEMO-visbycf-bold.otf) format('otf');
+}
+.title {
+  font-family: Fontspring;
+  font-size: 39px;
+  color: red;
 }
 .logo-and-texts {
   display: flex;
